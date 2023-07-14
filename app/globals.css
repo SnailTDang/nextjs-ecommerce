@@ -19,5 +19,6 @@
 }
 
 body {
+    background-color: #f4f5fa;
     color: var(--light-text-primary, rgba(58, 53, 65, 0.87));
 }

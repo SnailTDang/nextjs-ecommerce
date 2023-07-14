@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 import { FaRegCircleDot } from "react-icons/fa6";
-import MenuItem from "./MenuItem";
-import { FaHouse, FaAngleDown, FaRegCircle } from "react-icons/fa6";
+import MenuDropItem from "./MenuDropItem";
+import { navLinks } from "@/constants";
 
 export interface IAppProps {}
 
@@ -98,19 +99,19 @@ export default function SideBar(props: IAppProps) {
             </div>
             <nav className="pr-[18px] transition duration-5000 ease-in ">
                 <div className="pb-2">
-                    <MenuItem
-                        key={"kkgkgk"}
-                        id={"dashboard"}
-                        icon={<FaHouse size={20} />}
-                    />
-                </div>
-                <div className="pb-2">
-                    <MenuItem
-                        key={"kkg4kgk"}
-                        id={"das44hboard"}
-                        icon={null}
-                        // icon={<FaHouse size={20} />}
-                    />
+                    {navLinks?.map((item, index) => {
+                        return (
+                            <MenuDropItem
+                                key={item.id + index}
+                                id={item.id}
+                                title={item.title}
+                                type={item.type}
+                                path={item.path}
+                                subnav={item.subnav}
+                                icon={item.icon}
+                            />
+                        );
+                    })}
                 </div>
             </nav>
             SIdeBar
