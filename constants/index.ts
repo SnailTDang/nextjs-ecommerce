@@ -1,5 +1,10 @@
 import { MenuItemProps } from "@/app/components/SideBar/MenuDropItem";
-import { FaHouse, FaUserLarge, FaBagShopping } from "react-icons/fa6";
+import {
+    FaHouse,
+    FaUserLarge,
+    FaBagShopping,
+    FaRegCircle,
+} from "react-icons/fa6";
 
 export const navLinks: Array<MenuItemProps> = [
     {
@@ -8,21 +13,24 @@ export const navLinks: Array<MenuItemProps> = [
         type: "dropdown",
         path: "",
         icon: FaHouse,
-        subnav: [
+        child: [
             {
                 id: "customer-relatioship-management",
                 path: "crm",
                 title: "CRM",
+                icon: FaRegCircle,
             },
             {
                 id: "analystics",
                 path: "analystics",
                 title: "Analystics",
+                icon: FaRegCircle,
             },
             {
                 id: "ecommerce",
                 path: "ecommerce",
                 title: "eCommerce",
+                icon: FaRegCircle,
             },
         ],
     },
@@ -32,21 +40,24 @@ export const navLinks: Array<MenuItemProps> = [
         type: "dropdown",
         icon: FaUserLarge,
         path: "",
-        subnav: [
+        child: [
             {
                 id: "user-profile",
                 path: "user/profile",
                 title: "Profile",
+                icon: FaRegCircle,
             },
             {
                 id: "user-management",
                 path: "user/management",
                 title: "Management",
+                icon: FaRegCircle,
             },
             {
                 id: "user-permission",
                 path: "user/permission",
                 title: "Permission",
+                icon: FaRegCircle,
             },
         ],
     },
@@ -56,21 +67,84 @@ export const navLinks: Array<MenuItemProps> = [
         type: "item",
         path: "/ecommerce",
         icon: FaBagShopping,
-        subnav: [
+        child: [
             {
                 id: "products",
                 path: "ecommerce/products",
                 title: "Products",
+                icon: FaRegCircle,
+                child: [
+                    {
+                        id: "user-profile",
+                        path: "user/profile",
+                        title: "Profile",
+                        // icon: FaRegCircle,
+                    },
+                    {
+                        id: "user-management",
+                        path: "user/management",
+                        title: "Management",
+                        // icon: FaRegCircle,
+                    },
+                    {
+                        id: "user-permission",
+                        path: "user/permission",
+                        title: "Permission",
+                        // icon: FaRegCircle,
+                    },
+                ],
             },
             {
                 id: "orders",
                 path: "ecommerce/orders",
                 title: "Orders",
+                icon: FaRegCircle,
+                child: [
+                    {
+                        id: "user-profile",
+                        path: "user/profile",
+                        title: "Profile",
+                        // icon: FaRegCircle,
+                    },
+                    {
+                        id: "user-management",
+                        path: "user/management",
+                        title: "Management",
+                        // icon: FaRegCircle,
+                    },
+                    {
+                        id: "user-permission",
+                        path: "user/permission",
+                        title: "Permission",
+                        // icon: FaRegCircle,
+                    },
+                ],
             },
             {
                 id: "tracking",
                 path: "ecommerce/tracking",
                 title: "Tracking",
+                icon: FaRegCircle,
+                child: [
+                    {
+                        id: "user-profile",
+                        path: "user/profile",
+                        title: "Profile",
+                        // icon: FaRegCircle,
+                    },
+                    {
+                        id: "user-management",
+                        path: "user/management",
+                        title: "Management",
+                        // icon: FaRegCircle,
+                    },
+                    {
+                        id: "user-permission",
+                        path: "user/permission",
+                        title: "Permission",
+                        // icon: FaRegCircle,
+                    },
+                ],
             },
         ],
     },
@@ -79,7 +153,7 @@ export const navLinks: Array<MenuItemProps> = [
         title: "Carts",
         path: "",
         type: "dropdown",
-        icon: null,
-        subnav: [],
+        icon: FaRegCircle,
+        child: [],
     },
 ];

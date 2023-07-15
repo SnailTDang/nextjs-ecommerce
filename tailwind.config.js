@@ -10,7 +10,11 @@ module.exports = {
             sans: ["Inter", "san-serif"],
         },
         extend: {
+            backgroundColor: {
+                "light-primary": "#f4f5fa",
+            },
             colors: {
+                // "light-primary-bg": "f4f5fa",
                 "light-primary": "rgba(58, 53, 65, 0.87)",
             },
             backgroundImage: {

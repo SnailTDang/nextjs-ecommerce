@@ -7,9 +7,7 @@ export default function ABoutDetail() {
         <div>
             {/* {console.log(path)} */}
             <h1>About Detail</h1>
-            <button type="button" onClick={() => {}}>
-                Navlink
-            </button>
+            <button type="button">Navlink</button>
             {/* <p>Query:{JSON.stringify(path)}</p> */}
         </div>
     );

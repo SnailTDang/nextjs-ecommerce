@@ -8,8 +8,8 @@ export interface IAppProps {}
 
 export default function SideBar(props: IAppProps) {
     return (
-        <aside className="h-[100vh] w-[260px]  shadow-xl shadow-blue-gray-900/5">
-            <div className="w-full py-3">
+        <aside className="h-[100vh] overflow-y-auto no-scrollbar w-[260px] shadow-xl shadow-blue-gray-900/5">
+            <div className="w-full py-3 sticky top-0 bg-light-primary z-50 shadow shadow-blue-gray-100/5">
                 <div className="flex px-[22px] items-center gap-[12px]">
                     <div className="logo ">
                         <svg
@@ -107,7 +107,7 @@ export default function SideBar(props: IAppProps) {
                                 title={item.title}
                                 type={item.type}
                                 path={item.path}
-                                subnav={item.subnav}
+                                child={item.child}
                                 icon={item.icon}
                             />
                         );
