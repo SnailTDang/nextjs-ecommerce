@@ -2,8 +2,7 @@
 import React from "react";
 import { FaRegCircleDot } from "react-icons/fa6";
 import MenuDropItem from "./MenuDropItem";
-import { navLinks } from "@/constants";
-
+import { navLinks } from "@/src/constants";
 export interface IAppProps {}
 
 export default function SideBar(props: IAppProps) {

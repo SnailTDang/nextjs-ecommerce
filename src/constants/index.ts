@@ -1,4 +1,4 @@
-import { MenuItemProps } from "@/app/components/SideBar/MenuDropItem";
+import { MenuItemProps } from "../components/SideBar/MenuDropItem";
 import {
     FaHouse,
     FaUserLarge,
