@@ -1,13 +1,27 @@
-import * as React from "react";
-// import Header from "../Header";
+"use client";
+import { ReactNode, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setAppState } from "@/src/redux/feature/appStateSlice";
 
-export interface IAppProps {}
+type Props = {
+    // state?: string;
+    children: ReactNode;
+};
 
-export default function WrapperPage(props: IAppProps) {
-    return (
-        <div className="block w-5/6">
-            {/* <Header /> */}
-            Wrapper
-        </div>
-    );
-}
+const PageWrapper = (props: Props) => {
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     if (props.children) {
+    //         dispatch(
+    //             setAppState(
+    //                 (props?.children?.childProps?.segment as string) || ""
+    //             )
+    //         );
+    //     }
+    // }, [dispatch, props]);
+
+    return <>{props.children}</>;
+};
+
+export default PageWrapper;

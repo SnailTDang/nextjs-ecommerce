@@ -5,7 +5,7 @@ export interface IAppProps {}
 export default function App(props: IAppProps) {
     return (
         <div>
-            <p className="text-black">PAge</p>
+            <p className="text-black">404</p>
         </div>
     );
 }

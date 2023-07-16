@@ -8,29 +8,31 @@ import {
     Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import colorConfigs from "../../configs/colorConfigs";
-import { RouteType } from "../../routes/config";
-// import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
-// import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
-// import SidebarItem from "./SidebarItem";
+import { RootState } from "@/src/redux/store";
+import colorConfigs from "@/src/config/colorConfig";
+import { useSelector, useDispatch } from "react-redux";
 import SidebarItem from "../SideBarItem";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../redux/store";
+import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
+import { setAppState } from "@/src/redux/feature/appStateSlice";
+import { usePathname } from "next/navigation";
 
-type Props = {
-    item: RouteType;
-};
-
-const SidebarItemCollapse = ({ item }: Props) => {
+const SidebarItemCollapse = ({ item, isChild }: any) => {
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
+    const pathname = usePathname();
 
-    // const { appState } = useSelector((state: RootState) => state.appState);
+    const { appState } = useSelector((state: RootState) => state.appState);
+
+    // const handleOpen = () => {
+    //     setOpen(true);
+    // };
 
     useEffect(() => {
+        console.log(appState);
         if (appState.includes(item.state)) {
             setOpen(true);
         }
-    }, [appState, item]);
+    }, []);
 
     return item.sidebarProps ? (
         <>
@@ -40,33 +42,59 @@ const SidebarItemCollapse = ({ item }: Props) => {
                     "&: hover": {
                         backgroundColor: colorConfigs.sidebar.hoverBg,
                     },
-                    paddingY: "12px",
-                    paddingX: "24px",
+                    backgroundColor: `${
+                        open ? colorConfigs.sidebar.hoverBg : ""
+                    }`,
+                    paddingY: "5px",
+                    paddingLeft: `${isChild ? "32" : "24"}px`,
+                    paddingRight: "24px",
+                    borderTopRightRadius: "50px",
+                    borderBottomRightRadius: "50px",
+                    marginRight: "18px",
+                    marginTop: "8px",
                 }}
             >
                 <ListItemIcon
                     sx={{
                         color: colorConfigs.sidebar.color,
+                        display: "block",
+                        // minHeight: "100%",
+                        height: "24px",
+                        paddingRight: "10px",
+                        minWidth: "auto",
                     }}
                 >
-                    {item.sidebarProps.icon && item.sidebarProps.icon}
+                    {<item.sidebarProps.icon size={isChild ? 16 : 20} /> && (
+                        <item.sidebarProps.icon size={isChild ? 16 : 20} />
+                    )}
                 </ListItemIcon>
                 <ListItemText
                     disableTypography
                     primary={
-                        <Typography>{item.sidebarProps.displayText}</Typography>
+                        <Typography marginY={"0px"} paddingY={"0px"}>
+                            {item.sidebarProps.displayText}
+                        </Typography>
                     }
                 />
-                {open ? <ExpandLessOutlinedIcon /> : <ExpandMoreOutlinedIcon />}
+                {open ? <FaAngleDown /> : <FaAngleRight />}
             </ListItemButton>
             <Collapse in={open} timeout="auto">
-                <List>
-                    {item.child?.map((route, index) =>
+                <List sx={{ paddingY: "0" }}>
+                    {item.child?.map((route: any, index: number) =>
                         route.sidebarProps ? (
                             route.child ? (
-                                <SidebarItemCollapse item={route} key={index} />
+                                <SidebarItemCollapse
+                                    item={route}
+                                    key={index}
+                                    isChild={true}
+                                />
                             ) : (
-                                <SidebarItem item={route} key={index} />
+                                <SidebarItem
+                                    item={route}
+                                    key={index}
+                                    // handleOpen={handleOpen}
+                                    open={open}
+                                />
                             )
                         ) : null
                     )}

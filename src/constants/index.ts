@@ -157,3 +157,70 @@ export const navLinks: Array<MenuItemProps> = [
         child: [],
     },
 ];
+
+export const appRoutes = [
+    {
+        path: "/dashboard",
+        state: "dashboard",
+        sidebarProps: {
+            displayText: "Dashboard",
+            icon: FaHouse,
+        },
+        child: [
+            {
+                index: true,
+                state: "dashboard.about",
+                sidebarProps: {
+                    displayText: "Dashboard",
+                    icon: FaHouse,
+                },
+                child: [
+                    {
+                        path: "/about",
+                        state: "dashboard.about.index",
+                        sidebarProps: {
+                            icon: FaRegCircle,
+                            displayText: "CRM",
+                        },
+                    },
+                    {
+                        path: "/crm/analytics",
+                        state: "dashboard.index",
+                        sidebarProps: {
+                            displayText: "Analytic",
+                        },
+                    },
+                    {
+                        path: "/crm/saas",
+                        state: "crm.index",
+                        sidebarProps: {
+                            displayText: "Saas",
+                        },
+                    },
+                ],
+            },
+            {
+                path: "/hihi",
+                state: "dashboard.hhh",
+                sidebarProps: {
+                    icon: FaRegCircle,
+                    displayText: "CRM",
+                },
+            },
+            {
+                path: "/dashboard/analytics",
+                state: "dashboard.index",
+                sidebarProps: {
+                    displayText: "Analytic",
+                },
+            },
+            {
+                path: "/dashboard/saas",
+                state: "dashboard.index",
+                sidebarProps: {
+                    displayText: "Saas",
+                },
+            },
+        ],
+    },
+];
