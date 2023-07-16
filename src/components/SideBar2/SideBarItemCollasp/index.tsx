@@ -8,28 +8,17 @@ import {
     Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { RootState } from "@/src/redux/store";
 import colorConfigs from "@/src/config/colorConfig";
-import { useSelector, useDispatch } from "react-redux";
 import SidebarItem from "../SideBarItem";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
-import { setAppState } from "@/src/redux/feature/appStateSlice";
 import { usePathname } from "next/navigation";
 
 const SidebarItemCollapse = ({ item, isChild }: any) => {
     const [open, setOpen] = useState(false);
-    const dispatch = useDispatch();
     const pathname = usePathname();
 
-    const { appState } = useSelector((state: RootState) => state.appState);
-
-    // const handleOpen = () => {
-    //     setOpen(true);
-    // };
-
     useEffect(() => {
-        console.log(appState);
-        if (appState.includes(item.state)) {
+        if (pathname.includes(item.path)) {
             setOpen(true);
         }
     }, []);
@@ -57,15 +46,12 @@ const SidebarItemCollapse = ({ item, isChild }: any) => {
                 <ListItemIcon
                     sx={{
                         color: colorConfigs.sidebar.color,
-                        display: "block",
-                        // minHeight: "100%",
-                        height: "24px",
-                        paddingRight: "10px",
-                        minWidth: "auto",
+                        minWidth: "34px",
+                        paddingBottom: "3px",
                     }}
                 >
-                    {<item.sidebarProps.icon size={isChild ? 16 : 20} /> && (
-                        <item.sidebarProps.icon size={isChild ? 16 : 20} />
+                    {<item.sidebarProps.icon size={isChild ? 14 : 17} /> && (
+                        <item.sidebarProps.icon size={isChild ? 14 : 17} />
                     )}
                 </ListItemIcon>
                 <ListItemText
@@ -92,8 +78,9 @@ const SidebarItemCollapse = ({ item, isChild }: any) => {
                                 <SidebarItem
                                     item={route}
                                     key={index}
-                                    // handleOpen={handleOpen}
+                                    handleOpen={setOpen}
                                     open={open}
+                                    isChild={true}
                                 />
                             )
                         ) : null

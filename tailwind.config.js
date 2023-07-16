@@ -10,6 +10,12 @@ module.exports = {
             sans: ["Inter", "san-serif"],
         },
         extend: {
+            boxShadow: {
+                "logo-drawer": `0px 4px 8px -4px rgba(58, 53, 65, 0.16),
+                0px 6px 10px -4px rgba(58, 53, 65, 0.08),
+                0px 4px 6px -4px rgba(58, 53, 65, 0.1)`,
+            },
+
             backgroundColor: {
                 "light-primary": "#f4f5fa",
             },

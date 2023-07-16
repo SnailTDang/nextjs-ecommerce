@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import SideBar2 from "../components/SideBar2";
 import { ReduxProvider } from "../redux/Provider";
 import PageWrapper from "../components/WrapperPage";
+import SideBar from "../components/SideBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
                 <ReduxProvider>
                     <div className="flex">
                         <SideBar2 />
+                        {/* <SideBar /> */}
                         <PageWrapper>{children}</PageWrapper>
                     </div>
                 </ReduxProvider>

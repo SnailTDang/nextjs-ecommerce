@@ -4,6 +4,9 @@ import {
     FaUserLarge,
     FaBagShopping,
     FaRegCircle,
+    FaMessage,
+    FaShopware,
+    FaBoxOpen,
 } from "react-icons/fa6";
 
 export const navLinks: Array<MenuItemProps> = [
@@ -11,24 +14,24 @@ export const navLinks: Array<MenuItemProps> = [
         id: "dashboards",
         title: "Dashboards",
         type: "dropdown",
-        path: "",
+        path: "/dashboard",
         icon: FaHouse,
         child: [
             {
                 id: "customer-relatioship-management",
-                path: "crm",
+                path: "/dashboard/crm",
                 title: "CRM",
                 icon: FaRegCircle,
             },
             {
                 id: "analystics",
-                path: "analystics",
+                path: "/dashboard/analystics",
                 title: "Analystics",
                 icon: FaRegCircle,
             },
             {
                 id: "ecommerce",
-                path: "ecommerce",
+                path: "/dashboard/ecommerce",
                 title: "eCommerce",
                 icon: FaRegCircle,
             },
@@ -39,7 +42,7 @@ export const navLinks: Array<MenuItemProps> = [
         title: "User",
         type: "dropdown",
         icon: FaUserLarge,
-        path: "",
+        path: "/user",
         child: [
             {
                 id: "user-profile",
@@ -70,25 +73,25 @@ export const navLinks: Array<MenuItemProps> = [
         child: [
             {
                 id: "products",
-                path: "ecommerce/products",
+                path: "/ecommerce/products",
                 title: "Products",
                 icon: FaRegCircle,
                 child: [
                     {
                         id: "user-profile",
-                        path: "user/profile",
+                        path: "/ecommerce/products/create",
                         title: "Profile",
                         // icon: FaRegCircle,
                     },
                     {
                         id: "user-management",
-                        path: "user/management",
+                        path: "/user/management",
                         title: "Management",
                         // icon: FaRegCircle,
                     },
                     {
                         id: "user-permission",
-                        path: "user/permission",
+                        path: "/user/permission",
                         title: "Permission",
                         // icon: FaRegCircle,
                     },
@@ -96,19 +99,19 @@ export const navLinks: Array<MenuItemProps> = [
             },
             {
                 id: "orders",
-                path: "ecommerce/orders",
+                path: "/ecommerce/orders",
                 title: "Orders",
                 icon: FaRegCircle,
                 child: [
                     {
                         id: "user-profile",
-                        path: "user/profile",
+                        path: "/user/profile",
                         title: "Profile",
                         // icon: FaRegCircle,
                     },
                     {
                         id: "user-management",
-                        path: "user/management",
+                        path: "/user/management",
                         title: "Management",
                         // icon: FaRegCircle,
                     },
@@ -168,57 +171,182 @@ export const appRoutes = [
         },
         child: [
             {
+                path: "/dashboard/crm",
                 index: true,
                 state: "dashboard.about",
                 sidebarProps: {
-                    displayText: "Dashboard",
-                    icon: FaHouse,
+                    displayText: "CRM",
+                    icon: FaRegCircle,
+                },
+            },
+            {
+                index: true,
+                state: "dashboard.about",
+                path: "/dashboard/analystic",
+                sidebarProps: {
+                    displayText: "Analystic",
+                    icon: FaRegCircle,
+                },
+            },
+            {
+                index: true,
+                state: "dashboard.about",
+                path: "/dashboard/eCommerce",
+                sidebarProps: {
+                    displayText: "eCommerce",
+                    icon: FaRegCircle,
+                },
+            },
+        ],
+    },
+    {
+        index: true,
+        state: "dashboard.about",
+        path: "/chats",
+        sidebarProps: {
+            displayText: "Chats",
+            icon: FaMessage,
+        },
+    },
+    {
+        index: true,
+        state: "dashboard.about",
+        path: "/eCommerce",
+        sidebarProps: {
+            displayText: "eCommerce",
+            icon: FaBagShopping,
+        },
+        child: [
+            {
+                path: "/eCommerce/products",
+                state: "dashboard.about.index",
+                sidebarProps: {
+                    icon: FaBoxOpen,
+                    displayText: "Products",
                 },
                 child: [
                     {
-                        path: "/about",
+                        path: "/eCommerce/products/list",
                         state: "dashboard.about.index",
                         sidebarProps: {
-                            icon: FaRegCircle,
-                            displayText: "CRM",
+                            // icon: FaRegCircle,
+                            displayText: "Products List",
                         },
                     },
                     {
-                        path: "/crm/analytics",
+                        path: "/eCommerce/products/create",
                         state: "dashboard.index",
                         sidebarProps: {
-                            displayText: "Analytic",
+                            displayText: "Add Product",
                         },
                     },
                     {
-                        path: "/crm/saas",
+                        path: "/eCommerce/products/catetory",
                         state: "crm.index",
                         sidebarProps: {
-                            displayText: "Saas",
+                            displayText: "Catetory List",
                         },
                     },
                 ],
             },
             {
-                path: "/hihi",
-                state: "dashboard.hhh",
+                path: "/eCommerce/orders",
+                state: "dashboard.about.index",
                 sidebarProps: {
                     icon: FaRegCircle,
-                    displayText: "CRM",
+                    displayText: "Order",
+                },
+                child: [
+                    {
+                        path: "/eCommerce/orders/list",
+                        state: "dashboard.about.index",
+                        sidebarProps: {
+                            // icon: FaRegCircle,
+                            displayText: "Order List",
+                        },
+                    },
+                    {
+                        path: "/eCommerce/orders/detail",
+                        state: "dashboard.index",
+                        sidebarProps: {
+                            displayText: "Order Detail",
+                        },
+                    },
+                ],
+            },
+            {
+                path: "/eCommerce/customers",
+                state: "dashboard.about.index",
+                sidebarProps: {
+                    icon: FaRegCircle,
+                    displayText: "Customers",
+                },
+                child: [
+                    {
+                        path: "/eCommerce/customers/list",
+                        state: "dashboard.about.index",
+                        sidebarProps: {
+                            // icon: FaRegCircle,
+                            displayText: "Customers All",
+                        },
+                    },
+                    {
+                        path: "/eCommerce/customers/detail",
+                        state: "dashboard.index",
+                        sidebarProps: {
+                            displayText: "Customers Details",
+                        },
+                    },
+                    {
+                        path: "/eCommerce/customers/address",
+                        state: "crm.index",
+                        sidebarProps: {
+                            displayText: "Address & Billing",
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        index: true,
+        state: "dashboard.about",
+        path: "/invoices",
+        sidebarProps: {
+            displayText: "Invoices",
+            icon: FaMessage,
+        },
+        child: [
+            {
+                path: "/invoices/list",
+                state: "dashboard.about.index",
+                sidebarProps: {
+                    icon: FaRegCircle,
+                    displayText: "Customers All",
                 },
             },
             {
-                path: "/dashboard/analytics",
+                path: "/invoices/preview",
                 state: "dashboard.index",
                 sidebarProps: {
-                    displayText: "Analytic",
+                    icon: FaRegCircle,
+                    displayText: "Customers Details",
                 },
             },
             {
-                path: "/dashboard/saas",
-                state: "dashboard.index",
+                path: "/invoices/add",
+                state: "crm.index",
                 sidebarProps: {
-                    displayText: "Saas",
+                    icon: FaRegCircle,
+                    displayText: "Add",
+                },
+            },
+            {
+                path: "/invoices/edit",
+                state: "crm.index",
+                sidebarProps: {
+                    icon: FaRegCircle,
+                    displayText: "Edit",
                 },
             },
         ],

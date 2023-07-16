@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegCircleDot } from "react-icons/fa6";
 import MenuDropItem from "./MenuDropItem";
 import { navLinks } from "@/src/constants";
+import { usePathname } from "next/navigation";
 export interface IAppProps {}
 
-export default function SideBar(props: IAppProps) {
+export default function SideBar(props: any) {
     return (
         <aside className="h-[100vh] overflow-y-auto no-scrollbar w-[260px] shadow-xl shadow-blue-gray-900/5">
             <div className="w-full py-3 sticky top-0 bg-light-primary z-50 shadow shadow-blue-gray-100/5">

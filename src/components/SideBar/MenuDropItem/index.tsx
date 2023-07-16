@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     FaHouse,
     FaAngleDown,
@@ -8,10 +8,11 @@ import {
 } from "react-icons/fa6";
 import "./menuItem.scss";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export interface MenuItemProps {
     id: string;
-    path?: string | undefined;
+    path?: string;
     icon?: any | null;
     type?: string | undefined;
     title?: string | undefined;
@@ -29,10 +30,23 @@ export interface SubNavProps {
 
 export function SubMenu(props: SubNavProps) {
     const Icon = props.icon;
+    const pathname = usePathname();
+    console.log(props.path);
     return !props.child ? (
         <div className={`pt-[6px] h-fit`}>
-            <div className={`dashboardSubnav`}>
-                <Link href="#" className={"dashboardSubnav-link"}>
+            <div
+                className={`dashboardSubnav  ${
+                    pathname.includes(props.path as string) ? "link-active" : ""
+                }`}
+            >
+                <Link
+                    href={{
+                        pathname: props.path as string,
+                    }}
+                    prefetch={true}
+                    // href={props.path as string}
+                    className={`dashboardSubnav-link`}
+                >
                     <div className="w-[34px] flex justify-center items-center">
                         {props.icon ? <Icon size={12} /> : null}
                     </div>
@@ -43,7 +57,7 @@ export function SubMenu(props: SubNavProps) {
     ) : (
         <MenuDropItem
             id={props.id}
-            path={undefined}
+            path={props.path}
             icon={props.icon}
             title={props.title}
             child={props.child}
@@ -55,6 +69,16 @@ export function SubMenu(props: SubNavProps) {
 export default function MenuDropItem(props: MenuItemProps) {
     const ref = useRef(null);
     const Icon = props.icon;
+
+    const [open, setOpen] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        console.log(pathname, props.path, props.title);
+        if (pathname.includes(props.path as string)) {
+            setOpen(true);
+        }
+    }, []);
 
     useEffect(() => {
         const el = ref.current as any;
@@ -78,6 +102,10 @@ export default function MenuDropItem(props: MenuItemProps) {
             }
             el.querySelector(".icon")?.classList.toggle("rotate-arrow");
         });
+        if (pathname.includes(props.path as string)) {
+            setOpen(true);
+            el.click();
+        }
     }, []);
 
     return (
