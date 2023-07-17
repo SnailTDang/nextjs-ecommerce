@@ -7,6 +7,7 @@ import {
     FaMessage,
     FaShopware,
     FaBoxOpen,
+    FaFileInvoiceDollar,
 } from "react-icons/fa6";
 
 export const navLinks: Array<MenuItemProps> = [
@@ -171,7 +172,7 @@ export const appRoutes = [
         },
         child: [
             {
-                path: "/dashboard/crm",
+                path: "/dashboard/customer-manager",
                 index: true,
                 state: "dashboard.about",
                 sidebarProps: {
@@ -191,7 +192,7 @@ export const appRoutes = [
             {
                 index: true,
                 state: "dashboard.about",
-                path: "/dashboard/eCommerce",
+                path: "/dashboard/ecommerce",
                 sidebarProps: {
                     displayText: "eCommerce",
                     icon: FaRegCircle,
@@ -199,6 +200,7 @@ export const appRoutes = [
             },
         ],
     },
+    { groupName: "App & Pages" },
     {
         index: true,
         state: "dashboard.about",
@@ -314,7 +316,7 @@ export const appRoutes = [
         path: "/invoices",
         sidebarProps: {
             displayText: "Invoices",
-            icon: FaMessage,
+            icon: FaFileInvoiceDollar,
         },
         child: [
             {

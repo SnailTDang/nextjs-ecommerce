@@ -15,7 +15,7 @@ const SidebarItem = ({ item, isChild }: any) => {
             to={item.path}
             className={`dashboardSubnav ${
                 pathname.includes(item.path) ? "link-active" : ""
-            }`}
+            } overflow-hidden`}
             sx={{
                 "&: hover": {
                     backgroundColor: colorConfigs.sidebar.hoverBg,
@@ -33,17 +33,16 @@ const SidebarItem = ({ item, isChild }: any) => {
                             ? "#fff"
                             : colorConfigs.sidebar.color
                     }`,
-                    // paddingLeft: "12px",
                     minWidth: "34px",
                 }}
             >
                 {item.sidebarProps.icon ? (
-                    <Icon size={!isChild ? 17 : 14} />
-                ) : null}
+                    <Icon size={!isChild ? 16 : 14} />
+                ) : (
+                    <div className="w-[44px]"></div>
+                )}
             </ListItemIcon>
-            <div className={`${!isChild ? "" : "pl-3"}`}>
-                {item.sidebarProps.displayText}
-            </div>
+            {item.sidebarProps.displayText}
         </ListItemButton>
     ) : null;
 };

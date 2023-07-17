@@ -21,6 +21,7 @@ module.exports = {
             },
             colors: {
                 // "light-primary-bg": "f4f5fa",
+                "light-disabled": "#3a354161",
                 "light-primary": "#3a3541",
             },
             backgroundImage: {

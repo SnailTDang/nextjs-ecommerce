@@ -8,7 +8,7 @@ type Props = {
     children: ReactNode;
 };
 
-const PageWrapper = (props: Props) => {
+const PageWrapper = ({ children }: Props) => {
     const dispatch = useDispatch();
 
     // useEffect(() => {
@@ -21,7 +21,7 @@ const PageWrapper = (props: Props) => {
     //     }
     // }, [dispatch, props]);
 
-    return <>{props.children}</>;
+    return <>{children}</>;
 };
 
 export default PageWrapper;

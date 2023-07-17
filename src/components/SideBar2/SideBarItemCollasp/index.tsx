@@ -13,20 +13,30 @@ import SidebarItem from "../SideBarItem";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 
-const SidebarItemCollapse = ({ item, isChild }: any) => {
+const SidebarItemCollapse = ({ item, isChild, sideBarOpen }: any) => {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
 
-    useEffect(() => {
-        if (pathname.includes(item.path)) {
-            setOpen(true);
+    const handleCollapse = () => {
+        if (sideBarOpen) {
+            setOpen(!open);
+        } else {
+            setOpen(false);
         }
-    }, []);
+    };
+
+    useEffect(() => {
+        if (pathname.includes(item.path) && sideBarOpen) {
+            setOpen(true);
+        } else {
+            setOpen(false);
+        }
+    }, [sideBarOpen]);
 
     return item.sidebarProps ? (
         <>
             <ListItemButton
-                onClick={() => setOpen(!open)}
+                onClick={handleCollapse}
                 sx={{
                     "&: hover": {
                         backgroundColor: colorConfigs.sidebar.hoverBg,
@@ -50,14 +60,18 @@ const SidebarItemCollapse = ({ item, isChild }: any) => {
                         paddingBottom: "3px",
                     }}
                 >
-                    {<item.sidebarProps.icon size={isChild ? 14 : 17} /> && (
-                        <item.sidebarProps.icon size={isChild ? 14 : 17} />
+                    {<item.sidebarProps.icon size={isChild ? 14 : 16} /> && (
+                        <item.sidebarProps.icon size={isChild ? 14 : 16} />
                     )}
                 </ListItemIcon>
                 <ListItemText
                     disableTypography
                     primary={
-                        <Typography marginY={"0px"} paddingY={"0px"}>
+                        <Typography
+                            marginY={"0px"}
+                            paddingY={"0px"}
+                            overflow={"hidden"}
+                        >
                             {item.sidebarProps.displayText}
                         </Typography>
                     }
@@ -73,6 +87,7 @@ const SidebarItemCollapse = ({ item, isChild }: any) => {
                                     item={route}
                                     key={index}
                                     isChild={true}
+                                    sideBarOpen={sideBarOpen}
                                 />
                             ) : (
                                 <SidebarItem

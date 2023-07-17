@@ -3,5 +3,5 @@ import * as React from "react";
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
-    return <div>dashboard about</div>;
+    return <div>Ecommere</div>;
 }
