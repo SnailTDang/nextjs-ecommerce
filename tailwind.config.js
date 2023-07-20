@@ -18,6 +18,7 @@ module.exports = {
 
             backgroundColor: {
                 "light-primary": "#f4f5fa",
+                "sidebar-hover": "#ededf3",
             },
             colors: {
                 // "light-primary-bg": "f4f5fa",

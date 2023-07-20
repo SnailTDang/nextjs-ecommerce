@@ -1,6 +1,13 @@
 "use client";
 import { appRoutes } from "@/src/constants";
-import { Divider, List, Stack, Toolbar, Typography } from "@mui/material";
+import {
+    Divider,
+    List,
+    ListItem,
+    Stack,
+    Toolbar,
+    Typography,
+} from "@mui/material";
 import SidebarItemCollapse from "./SideBarItemCollasp";
 import SidebarItem from "./SideBarItem";
 import colorConfigs from "@/src/config/colorConfig";
@@ -66,13 +73,13 @@ const Sidebar = () => {
 
     const handleHoverOpen = () => {
         if (hover) {
-            setOpen(true);
+            setOpen(hover ? true : false);
         }
     };
 
     const handleHoverClose = () => {
         if (hover) {
-            setOpen(false);
+            setOpen(hover ? false : true);
         }
     };
     return (
@@ -98,11 +105,15 @@ const Sidebar = () => {
                     backgroundColor: colorConfigs.sidebar.bg,
                     zIndex: 999,
                 },
+                "& .MuiListItem-root": {
+                    display: "block",
+                    padding: "0",
+                },
             }}
         >
             <Toolbar
                 sx={{
-                    marginBottom: "8px",
+                    // marginBottom: "8px",
                     justifyContent: "space-between",
                     alignItems: "center",
                 }}
@@ -125,24 +136,29 @@ const Sidebar = () => {
                 </Stack>
             </Toolbar>
             <List
-                disablePadding
+                disablePadding={true}
                 onMouseMove={handleHoverOpen}
                 onMouseLeave={handleHoverClose}
+                className={"h-full pr-[18px]"}
             >
                 {appRoutes.map((route: any, index: number) =>
                     route.sidebarProps ? (
                         route.child ? (
-                            <SidebarItemCollapse
-                                item={route}
-                                key={index}
-                                sideBarOpen={open}
-                            />
+                            <ListItem className="pr-0">
+                                <SidebarItemCollapse
+                                    item={route}
+                                    key={index}
+                                    sideBarOpen={open}
+                                />
+                            </ListItem>
                         ) : (
-                            <SidebarItem
-                                item={route}
-                                key={index}
-                                isChild={false}
-                            />
+                            <ListItem className="pr-0">
+                                <SidebarItem
+                                    item={route}
+                                    key={index}
+                                    isChild={false}
+                                />
+                            </ListItem>
                         )
                     ) : open ? (
                         <div

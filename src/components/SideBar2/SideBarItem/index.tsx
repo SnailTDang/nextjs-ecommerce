@@ -2,29 +2,26 @@
 import Link from "next/link";
 import "./menuItem.scss";
 import { usePathname } from "next/navigation";
-import { ListItemButton, ListItemIcon } from "@mui/material";
+import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
 import colorConfigs from "@/src/config/colorConfig";
+import React from "react";
 
-const SidebarItem = ({ item, isChild }: any) => {
+export type SideBarItemProps = {
+    item?: any;
+    isChild?: boolean;
+    open?: boolean;
+};
+
+const SidebarItem = ({ item, isChild }: SideBarItemProps) => {
     const Icon = item.sidebarProps.icon;
     const pathname = usePathname();
 
     return item.sidebarProps && item.path ? (
-        <ListItemButton
-            component={Link as any}
-            to={item.path}
+        <Link
+            href={item.path}
             className={`dashboardSubnav ${
                 pathname.includes(item.path) ? "link-active" : ""
-            } overflow-hidden`}
-            sx={{
-                "&: hover": {
-                    backgroundColor: colorConfigs.sidebar.hoverBg,
-                },
-                paddingY: "12px",
-                paddingX: "24px",
-                marginTop: "8px",
-                marginRight: "18px",
-            }}
+            } overflow-hidden px-3 px-6 mt-[8px] hover:bg-sidebar-hover`}
         >
             <ListItemIcon
                 sx={{
@@ -42,8 +39,9 @@ const SidebarItem = ({ item, isChild }: any) => {
                     <div className="w-[44px]"></div>
                 )}
             </ListItemIcon>
-            {item.sidebarProps.displayText}
-        </ListItemButton>
+
+            <div>{item.sidebarProps.displayText}</div>
+        </Link>
     ) : null;
 };
 

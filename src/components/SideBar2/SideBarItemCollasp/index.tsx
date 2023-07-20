@@ -2,6 +2,7 @@
 import {
     Collapse,
     List,
+    ListItem,
     ListItemButton,
     ListItemIcon,
     ListItemText,
@@ -12,6 +13,12 @@ import colorConfigs from "@/src/config/colorConfig";
 import SidebarItem from "../SideBarItem";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
+
+export type SideBarItemCollaspProps = {
+    item: any;
+    isChild: boolean;
+    sideBarOpen: boolean;
+};
 
 const SidebarItemCollapse = ({ item, isChild, sideBarOpen }: any) => {
     const [open, setOpen] = useState(false);
@@ -49,7 +56,6 @@ const SidebarItemCollapse = ({ item, isChild, sideBarOpen }: any) => {
                     paddingRight: "24px",
                     borderTopRightRadius: "50px",
                     borderBottomRightRadius: "50px",
-                    marginRight: "18px",
                     marginTop: "8px",
                 }}
             >
@@ -79,7 +85,7 @@ const SidebarItemCollapse = ({ item, isChild, sideBarOpen }: any) => {
                 {open ? <FaAngleDown /> : <FaAngleRight />}
             </ListItemButton>
             <Collapse in={open} timeout="auto">
-                <List sx={{ paddingY: "0" }}>
+                <List sx={{ padding: "0" }} disablePadding>
                     {item.child?.map((route: any, index: number) =>
                         route.sidebarProps ? (
                             route.child ? (
@@ -90,13 +96,14 @@ const SidebarItemCollapse = ({ item, isChild, sideBarOpen }: any) => {
                                     sideBarOpen={sideBarOpen}
                                 />
                             ) : (
-                                <SidebarItem
-                                    item={route}
-                                    key={index}
-                                    handleOpen={setOpen}
-                                    open={open}
-                                    isChild={true}
-                                />
+                                <ListItem>
+                                    <SidebarItem
+                                        item={route}
+                                        key={index}
+                                        open={open}
+                                        isChild={true}
+                                    />
+                                </ListItem>
                             )
                         ) : null
                     )}

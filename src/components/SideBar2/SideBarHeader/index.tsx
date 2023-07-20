@@ -3,9 +3,19 @@ import { FaRegCircleDot } from "react-icons/fa6";
 
 export interface IAppProps {}
 
-export default function SideBarHeader({ handleDrawerClose }: any) {
+export default function SideBarHeader({ handleDrawerClose, onMouseOver }: any) {
     return (
-        <div>
+        <div
+            onMouseOver={onMouseOver}
+            // onMouseOver={(e: any) => {
+            //     console.log(e);
+            //     e.stopPropagation();
+            //     e.nativeEvent.stopImmediatePropagation();
+            // }}
+            // onMouseLeave={(e: any) => {
+            //     e.stopPropagation();
+            // }}
+        >
             <div className="sticky top-0 left-0 flex items-center">
                 <div className="logo pr-4">
                     <svg

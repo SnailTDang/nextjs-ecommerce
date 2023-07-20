@@ -1,3 +1,4 @@
+import React from "react";
 import { MenuItemProps } from "../components/SideBar/MenuDropItem";
 import {
     FaHouse,
@@ -9,6 +10,15 @@ import {
     FaBoxOpen,
     FaFileInvoiceDollar,
 } from "react-icons/fa6";
+
+export type RouteProps = {
+    path?: string;
+    displayText?: string;
+    icon?: React.ElementType;
+    sidebarProps?: any;
+    child?: Array<RouteProps>;
+    groupName?: string;
+};
 
 export const navLinks: Array<MenuItemProps> = [
     {
@@ -162,27 +172,22 @@ export const navLinks: Array<MenuItemProps> = [
     },
 ];
 
-export const appRoutes = [
+export const appRoutes: Array<RouteProps> = [
     {
         path: "/dashboard",
-        state: "dashboard",
         sidebarProps: {
             displayText: "Dashboard",
             icon: FaHouse,
         },
         child: [
             {
-                path: "/dashboard/customer-manager",
-                index: true,
-                state: "dashboard.about",
+                path: "/dashboard/customer",
                 sidebarProps: {
                     displayText: "CRM",
                     icon: FaRegCircle,
                 },
             },
             {
-                index: true,
-                state: "dashboard.about",
                 path: "/dashboard/analystic",
                 sidebarProps: {
                     displayText: "Analystic",
@@ -190,8 +195,6 @@ export const appRoutes = [
                 },
             },
             {
-                index: true,
-                state: "dashboard.about",
                 path: "/dashboard/ecommerce",
                 sidebarProps: {
                     displayText: "eCommerce",
@@ -202,8 +205,6 @@ export const appRoutes = [
     },
     { groupName: "App & Pages" },
     {
-        index: true,
-        state: "dashboard.about",
         path: "/chats",
         sidebarProps: {
             displayText: "Chats",
@@ -211,40 +212,34 @@ export const appRoutes = [
         },
     },
     {
-        index: true,
-        state: "dashboard.about",
-        path: "/eCommerce",
+        path: "/ecommerce",
         sidebarProps: {
             displayText: "eCommerce",
             icon: FaBagShopping,
         },
         child: [
             {
-                path: "/eCommerce/products",
-                state: "dashboard.about.index",
+                path: "/ecommerce/products",
                 sidebarProps: {
                     icon: FaBoxOpen,
                     displayText: "Products",
                 },
                 child: [
                     {
-                        path: "/eCommerce/products/list",
-                        state: "dashboard.about.index",
+                        path: "/ecommerce/products/list",
                         sidebarProps: {
                             // icon: FaRegCircle,
                             displayText: "Products List",
                         },
                     },
                     {
-                        path: "/eCommerce/products/create",
-                        state: "dashboard.index",
+                        path: "/ecommerce/products/create",
                         sidebarProps: {
                             displayText: "Add Product",
                         },
                     },
                     {
-                        path: "/eCommerce/products/catetory",
-                        state: "crm.index",
+                        path: "/ecommerce/products/catetory",
                         sidebarProps: {
                             displayText: "Catetory List",
                         },
@@ -252,24 +247,21 @@ export const appRoutes = [
                 ],
             },
             {
-                path: "/eCommerce/orders",
-                state: "dashboard.about.index",
+                path: "/ecommerce/orders",
                 sidebarProps: {
                     icon: FaRegCircle,
                     displayText: "Order",
                 },
                 child: [
                     {
-                        path: "/eCommerce/orders/list",
-                        state: "dashboard.about.index",
+                        path: "/ecommerce/orders/list",
                         sidebarProps: {
                             // icon: FaRegCircle,
                             displayText: "Order List",
                         },
                     },
                     {
-                        path: "/eCommerce/orders/detail",
-                        state: "dashboard.index",
+                        path: "/ecommerce/orders/detail",
                         sidebarProps: {
                             displayText: "Order Detail",
                         },
@@ -277,31 +269,27 @@ export const appRoutes = [
                 ],
             },
             {
-                path: "/eCommerce/customers",
-                state: "dashboard.about.index",
+                path: "/ecommerce/customers",
                 sidebarProps: {
                     icon: FaRegCircle,
                     displayText: "Customers",
                 },
                 child: [
                     {
-                        path: "/eCommerce/customers/list",
-                        state: "dashboard.about.index",
+                        path: "/ecommerce/customers/list",
                         sidebarProps: {
                             // icon: FaRegCircle,
                             displayText: "Customers All",
                         },
                     },
                     {
-                        path: "/eCommerce/customers/detail",
-                        state: "dashboard.index",
+                        path: "/ecommerce/customers/detail",
                         sidebarProps: {
                             displayText: "Customers Details",
                         },
                     },
                     {
-                        path: "/eCommerce/customers/address",
-                        state: "crm.index",
+                        path: "/ecommerce/customers/address",
                         sidebarProps: {
                             displayText: "Address & Billing",
                         },
@@ -311,8 +299,6 @@ export const appRoutes = [
         ],
     },
     {
-        index: true,
-        state: "dashboard.about",
         path: "/invoices",
         sidebarProps: {
             displayText: "Invoices",
@@ -321,7 +307,6 @@ export const appRoutes = [
         child: [
             {
                 path: "/invoices/list",
-                state: "dashboard.about.index",
                 sidebarProps: {
                     icon: FaRegCircle,
                     displayText: "Customers All",
@@ -329,7 +314,6 @@ export const appRoutes = [
             },
             {
                 path: "/invoices/preview",
-                state: "dashboard.index",
                 sidebarProps: {
                     icon: FaRegCircle,
                     displayText: "Customers Details",
@@ -337,7 +321,6 @@ export const appRoutes = [
             },
             {
                 path: "/invoices/add",
-                state: "crm.index",
                 sidebarProps: {
                     icon: FaRegCircle,
                     displayText: "Add",
@@ -345,7 +328,6 @@ export const appRoutes = [
             },
             {
                 path: "/invoices/edit",
-                state: "crm.index",
                 sidebarProps: {
                     icon: FaRegCircle,
                     displayText: "Edit",
