@@ -25,20 +25,12 @@ const SidebarItemCollapse = ({ item, isChild, sideBarOpen }: any) => {
     const pathname = usePathname();
 
     const handleCollapse = () => {
-        if (sideBarOpen) {
-            setOpen(!open);
-        } else {
-            setOpen(false);
-        }
+        setOpen(sideBarOpen ? !open : false)
     };
 
     useEffect(() => {
-        if (pathname.includes(item.path) && sideBarOpen) {
-            setOpen(true);
-        } else {
-            setOpen(false);
-        }
-    }, [sideBarOpen]);
+        setOpen(pathname.includes(item.path) && sideBarOpen ? true : false);
+    }, [sideBarOpen, pathname]);
 
     return item.sidebarProps ? (
         <>
